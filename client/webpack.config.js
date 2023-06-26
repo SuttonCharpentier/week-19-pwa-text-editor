@@ -12,7 +12,7 @@ module.exports = () => {
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js',
-      editor: './src/js/editor.js',
+      // editor: './src/js/editor.js',
     },
     // Output for our bundles
     output: {
@@ -30,15 +30,15 @@ module.exports = () => {
           swDest: 'src-sw.js',
         }),
         // Webpack configuration to copy the favicon file from the src directory to the dist directory
-        new CopyWebpackPlugin({
-          patterns: [
-            {
-              from: './favicon.ico',
-              to: 'favicon.ico',
-            },
-          ],
-        }),
-      new WorkboxPlugin.GenerateSW(),
+        // new CopyWebpackPlugin({
+        //   patterns: [
+        //     {
+        //       from: './favicon.ico',
+        //       to: 'favicon.ico',
+        //     },
+        //   ],
+        // }),
+      // new WorkboxPlugin.GenerateSW(),
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -47,9 +47,9 @@ module.exports = () => {
         description: 'My awesome Progressive Web App!',
         background_color: '#225ca3',
         theme_color: '#225ca3',
-        start_url: './',
-        publicPath: './',
-        scope: './',
+        start_url: '/',
+        publicPath: '/',
+        // scope: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
@@ -73,6 +73,7 @@ module.exports = () => {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             },
           },
         },
